@@ -10,11 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        rid: [
-            linux-musl-x64
-            linux-x64,
-            win-x64,
-          ]
+        rid: [linux-musl-x64, linux-x64]
       fail-fast: true
     steps:
       - uses: actions/checkout@v2
