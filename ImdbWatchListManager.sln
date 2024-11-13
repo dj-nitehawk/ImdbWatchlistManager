@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImdbWatchListManager", "Source\ImdbWatchListManager.csproj", "{DF509A25-5D9E-4E4B-82B2-A5BAE2F21CFF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF509A25-5D9E-4E4B-82B2-A5BAE2F21CFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF509A25-5D9E-4E4B-82B2-A5BAE2F21CFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF509A25-5D9E-4E4B-82B2-A5BAE2F21CFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF509A25-5D9E-4E4B-82B2-A5BAE2F21CFF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
