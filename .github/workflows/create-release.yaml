@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        rid: [linux-musl-x64, linux-x64]
+        rid: [linux-musl-x64, linux-x64, win-x64]
       fail-fast: true
     steps:
       - uses: actions/checkout@v2
@@ -24,7 +24,7 @@ jobs:
       - name: Publish Binaries
         working-directory: Source
         run: |
-          dotnet publish ./ImdbWatchListManager.sln -c Release -r ${{ matrix.rid }} --self-contained true -p:PublishTrimmed=false -o ./bin/${{ matrix.rid }}
+          dotnet publish -c Release -r ${{ matrix.rid }} --self-contained true -p:PublishTrimmed=false -o ./bin/${{ matrix.rid }}
           cd ./bin/${{ matrix.rid }}
           zip -r -9 ../${{ matrix.rid }}.zip ./*
 
