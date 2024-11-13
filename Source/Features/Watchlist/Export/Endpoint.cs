@@ -53,7 +53,7 @@ sealed class Endpoint(IHttpClientFactory factory) : Ep.NoReq.NoRes
 
         foreach (var m in movies)
         {
-            sb.Append(Sanitize(m.Title!)).Append(',')
+            sb.Append(Sanitize(m.Title)).Append(',')
               .Append(m.Year).Append(',')
               .Append(m.Id).Append(',')
               .Append(m.Url).AppendLine();

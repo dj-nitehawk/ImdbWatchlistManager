@@ -1,0 +1,42 @@
+name: Create Release With Binary Assets
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        rid: [
+            linux-musl-x64
+            linux-x64,
+            win-x64,
+          ]
+      fail-fast: true
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 9.x
+          dotnet-quality: "preview"
+
+      - name: Publish Binaries
+        working-directory: Source
+        run: |
+          dotnet publish ./ImdbWatchListManager.sln -c Release -r ${{ matrix.rid }} --self-contained true -p:PublishTrimmed=false -o ./bin/${{ matrix.rid }}
+          cd ./bin/${{ matrix.rid }}
+          zip -r -9 ../${{ matrix.rid }}.zip ./*
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        if: ${{ !contains(github.ref, 'beta') }}
+        with:
+          draft: false
+          name: ${{ github.ref_name }} Release
+          body_path: changelog.md
+          files: Source/bin/*.zip

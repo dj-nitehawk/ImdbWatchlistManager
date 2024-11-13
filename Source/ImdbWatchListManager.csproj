@@ -5,13 +5,14 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <OutputType>Exe</OutputType>
+        <PublishSingleFile>true</PublishSingleFile>
         <NoWarn>CS1591;CA2016</NoWarn>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <UserSecretsId>756b41fb-460b-44eb-9dae-a159590dbff9</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FastEndpoints" Version="5.31.0.6-beta"/>
+        <PackageReference Include="FastEndpoints" Version="5.31.0.6-beta"/>        
         <PackageReference Include="HtmlAgilityPack" Version="1.11.71"/>
     </ItemGroup>
 
