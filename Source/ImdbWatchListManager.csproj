@@ -12,7 +12,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FastEndpoints" Version="5.31.0.6-beta"/>        
+        <PackageReference Include="FastEndpoints" Version="5.31.0.7-beta"/>
         <PackageReference Include="HtmlAgilityPack" Version="1.11.71"/>
     </ItemGroup>
 

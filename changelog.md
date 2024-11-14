@@ -1,1 +1,3 @@
-- initial release
+- lock lang header to `en-US` when making requests to imdb
+- remove unnecessary build artifacts from published zip files
+- upgrade fastendpoints to latest

@@ -19,13 +19,14 @@ jobs:
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: 9.x
-          dotnet-quality: "preview"
+          # dotnet-quality: "preview"
 
       - name: Publish Binaries
         working-directory: Source
         run: |
           dotnet publish -c Release -r ${{ matrix.rid }} --self-contained true -p:PublishTrimmed=false -o ./bin/${{ matrix.rid }}
           cd ./bin/${{ matrix.rid }}
+          find . -type f ! -name 'appsettings.json' ! -name 'ImdbWatchlistManager' -delete
           zip -r -9 ../${{ matrix.rid }}.zip ./*
 
       - name: Create Release
