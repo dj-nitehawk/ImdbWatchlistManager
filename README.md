@@ -12,6 +12,11 @@ a web app to export your imdb watchlist to a csv file.
 the app will scrape your imdb watchlist page (which should be make public) and convert the data to csv format. 
 the csv output is cached in memory for 1 hour. i.e. imdb is scraped no more than once per hour, even if the endpoint is hit repeatedly.
 
+## scrape failure notification:
+
+if scraping the imdb watchlist has not succeeded in 24hrs, you can get notified via pushbullet notification.
+this can be enabled by editing the `appsettings.json` file and entering your pushbullet api key.
+
 ## todo:
 
 - remove a previously watchlisted movie from the watchlist by supplying it's imdb id.

@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.Text.Json;
 using HtmlAgilityPack;
+using ImdbWatchListManager.Features.Pushbullet;
 
 namespace ImdbWatchListManager.Watchlist.Export;
 
@@ -16,6 +17,8 @@ sealed class Endpoint(IHttpClientFactory factory) : Ep.NoReq.NoRes
 
     public override async Task HandleAsync(CancellationToken c)
     {
+        await NotifyIfNoSuccessIn24Hrs(c);
+
         var userId = Config["Imdb:UserId"];
         if (!userId?.StartsWith("ur") is true)
             ThrowError("imdb user id is not configured in app settings!");
@@ -60,6 +63,28 @@ sealed class Endpoint(IHttpClientFactory factory) : Ep.NoReq.NoRes
         }
 
         await SendStringAsync(sb.ToString(), contentType: "text/csv", cancellation: c);
+
+        _lastSuccess = DateTime.Now;
+    }
+
+    static DateTime? _lastSuccess;
+
+    static async Task NotifyIfNoSuccessIn24Hrs(CancellationToken c)
+    {
+        if (_lastSuccess is null) //first call after app start
+        {
+            _lastSuccess = DateTime.Now.Subtract(TimeSpan.FromDays(2));
+
+            return;
+        }
+
+        if (DateTime.Now.Subtract(_lastSuccess.Value).TotalHours >= 24)
+        {
+            await new ErrorNotification("Imdb Watchlist Manager", "Scraping the watchlist has not succeeded in 24hrs!")
+                .ExecuteAsync(c);
+
+            _lastSuccess = DateTime.Now; //prevent repeated notifications within a 24hr period
+        }
     }
 
     static string Sanitize(string val)

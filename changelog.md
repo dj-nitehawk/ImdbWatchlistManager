@@ -1,3 +1,2 @@
-- lock lang header to `en-US` when making requests to imdb
-- remove unnecessary build artifacts from published zip files
-- upgrade fastendpoints to latest
+- add push notification support with pushbullet
+- notify user if imdb watchlist scraping not successful in 24hrs
