@@ -9,7 +9,7 @@ a web app to export your imdb watchlist to a csv file.
 4. launch the web app by executing the main binary `ImdbWatchlistManager`
 5. make a `GET` request to the url: `http://localhost:5000/watchlist/export`
 
-the app will scrape your imdb watchlist page (which should be make public) and convert the data to csv format. 
+the app will scrape your imdb watchlist page (which should be made public) and convert the data to csv format. 
 the csv output is cached in memory for 1 hour. i.e. imdb is scraped no more than once per hour, even if the endpoint is hit repeatedly.
 
 ## scrape failure notification:
